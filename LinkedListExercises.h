@@ -81,6 +81,43 @@
 template <typename T>
 void LinkedList<T>::insertOrdered(const T& newData) {
 
+ // allocate a new node
+  Node* newNode = new Node(newData);
+
+  if (!head_) {
+    // If empty, insert as the only item as both head and tail.
+    // The Node already has next and prev set to nullptr by default.
+    head_ = newNode;
+    tail_ = newNode;
+    size_++;
+    return;
+  };
+ 
+  if(newData <= head_->data) {
+    pushFront(newData);
+    return;
+  }; 
+
+  if(newData >= tail_->data) {
+    pushBack(newData);
+    return;
+  }; 
+
+  Node * cur = head_;
+  while((cur->next->data) < newData) {
+    cur = cur->next;
+  }; //nie powinno dojsc do tail
+
+  newNode->next = cur->next;
+  newNode->prev = cur;
+  cur->next->prev = newNode;
+  cur->next = newNode;
+
+  // update size
+  size_++;
+
+
+
   // -----------------------------------------------------------
   // TODO: Your code here!
   // -----------------------------------------------------------

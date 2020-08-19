@@ -204,7 +204,7 @@ public:
 
   // Output a string representation of the list.
   // This requires that the data type T supports stream output itself.
-  // This is used by the operator<< overload defined in this file.
+  // This is used by the operator << overload defined in this file.
   std::ostream& print(std::ostream& os) const;
  
   // Insert a new item to the list in the correct position, assuming the list
