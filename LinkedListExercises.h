@@ -248,7 +248,7 @@ LinkedList<T> LinkedList<T>::merge(const LinkedList<T>& other) const {
   // "working copies" of the two lists: "*this" refers to the current
   // list object instance that is calling the merge member function, and
   // "other" refers to the list that was passed as an argument:
-  LinkedList<T> left = *this;
+  //LinkedList<T> left = *this;
   LinkedList<T> right = other;
 
   // So if this function was called as "A.merge(B)", then now, "left"
@@ -259,6 +259,28 @@ LinkedList<T> LinkedList<T>::merge(const LinkedList<T>& other) const {
   // the final result we want. This is what we will return at the end of
   // the function.
   LinkedList<T> merged;
+  Node * head_l = head_;
+  Node * head_r = right.getHeadPtr();
+
+  while (head_l && head_r){				
+	  if (head_l->data < head_r->data){ 			
+		  merged.pushBack(head_l->data);		
+		  head_l = head_l->next;		
+		  continue;		
+	  }			
+	  merged.pushBack(head_r->data);		
+	  head_r = head_r->next;		
+  }	
+
+  while (head_l){				
+	  merged.pushBack(head_l->data);			
+	  head_l = head_l->next;		
+  }			
+
+  while (head_r){				
+	  merged.pushBack(head_r->data);			
+	  head_r = head_r->next;
+  }
 
   // -----------------------------------------------------------
   // TODO: Your code here!
